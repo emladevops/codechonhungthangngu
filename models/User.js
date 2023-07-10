@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Groups = require('./Group');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -32,7 +33,23 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: false,
         default: false,
+    },
+
+    isBanned: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+
+    // Relationship
+
+    ContestGroups: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group',
+        required: false,
     }
+
+
 })
 
 module.exports = mongoose.model("User", userSchema);

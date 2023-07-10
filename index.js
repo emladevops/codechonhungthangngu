@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(bodyParser({extended: true}))
 
 require("./src/auth")(app);
-
+require("./src/group")(app);
 
 
 app.listen(8080);
