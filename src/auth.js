@@ -175,17 +175,12 @@ app.post('/api/beta/profile/lookup', async(req, res) => {
     }
 })
 
-app.post('/api/beta/auth/groups/add', auth.isAdmin, async(req, res) => {
+app.post('/api/beta/auth/groups/add', auth.isAdmin, async(req , res) => {
     const { userid, groupid } = req.body;
     console.log(userid);
-    try {
-        let ModifyingUser = await User.findById(userid);
-        ModifyingUser.ContestGroups = groupid;
-        await ModifyingUser.save();
-        res.status(200).send("Completed");
-    }
-    catch (e) {
-        res.status(500).send("An error occured");
-    }
+    let ModifyingUser = await User.findById(userid);
+    ModifyingUser.ContestGroups = groupid;
+    await ModifyingUser.save();
+    res.status(200).send("OK");
 });
 }
